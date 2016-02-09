@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>aoeai</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+</head>
+<body>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Android代码生成器</h1>
+        <p>Resize this responsive page to see the effect!</p>
+    </div>
+    <div class="row">
+        <form th:action="@{/createAndroidCode}" method="post">
+
+            <textarea name="xmlCode" class="form-control" rows="5"></textarea>
+
+            <br/>
+
+            <button type="submit" th:text="提交" class="btn btn-info" />
+
+        </form>
+
+        <div class="col-sm-4">
+            <h3>Column 2</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+            <p th:text="${name}"/>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
