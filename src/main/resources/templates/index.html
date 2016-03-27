@@ -12,12 +12,12 @@
 <div class="container">
     <div class="jumbotron">
         <h1>Android代码生成器</h1>
-        <p>Resize this responsive page to see the effect!</p>
+        <p>讨论群：532295053</p>
     </div>
     <div class="row">
         <form th:action="@{/createAndroidCode}" method="post">
 
-            <textarea name="xmlCode" class="form-control" rows="5"></textarea>
+            <textarea name="xmlCode" class="form-control" rows="5">粘贴Android的xml文件内容在这里，可以生成有android:id属性的Java对象</textarea>
 
             <br/>
 
@@ -26,9 +26,8 @@
         </form>
 
         <div class="col-sm-4">
-            <h3>Column 2</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-            <p th:text="${name}"/>
+            <h3>生成</h3>
+            <p th:each="field : ${fieldList}" th:text=" 'private ' + ${field.type} + ' ' + ${field.original} + ';'" />
         </div>
     </div>
 </div>
