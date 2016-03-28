@@ -1,3 +1,11 @@
+## 项目说明
+
+    http://blog.csdn.net/wyyl1/article/details/50984221
+    
+## QQ群
+
+    550618228
+
 ## License
 
     The MIT License (MIT)
