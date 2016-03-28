@@ -1,3 +1,7 @@
+项目地址
+----
+http://www.aoeai.com:8081/android-code-generator/
+
 ## 项目说明
 
     http://blog.csdn.net/wyyl1/article/details/50984221
