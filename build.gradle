@@ -10,6 +10,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: "war"
 
 jar {
     baseName = 'gs-serving-web-content'
@@ -23,10 +24,27 @@ repositories {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+war {
+    baseName = 'android-code-generator'
+    version =  '0.0.1' // 2016-03-29 发布0.0.1版本
+}
+configurations {
+    providedRuntime // 发布
+}
+repositories {
+    jcenter()
+    maven { url "http://repo.spring.io/libs-snapshot" }
+}
+
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("dom4j:dom4j:1.6.1")
+
     testCompile("junit:junit")
+
+    // 发布
+    compile("org.springframework.boot:spring-boot-starter-web")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 }
 
 task wrapper(type: Wrapper) {

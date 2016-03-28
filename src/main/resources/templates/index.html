@@ -12,12 +12,12 @@
 <div class="container">
     <div class="jumbotron">
         <h1>Android代码生成器</h1>
-        <p>讨论群：532295053</p>
+        <p>QQ群：550618228</p>
     </div>
     <div class="row">
         <form th:action="@{/createAndroidCode}" method="post">
 
-            <textarea name="xmlCode" class="form-control" rows="5">粘贴Android的xml文件内容在这里，可以生成有android:id属性的Java对象</textarea>
+            <textarea name="xmlCode" class="form-control" rows="5" onfocus="this.value=''; this.onfocus=null;">粘贴Android的xml文件内容在这里，可以生成有android:id属性的Java对象</textarea>
 
             <br/>
 
@@ -25,9 +25,12 @@
 
         </form>
 
-        <div class="col-sm-4">
-            <h3>生成</h3>
+        <div class="col-sm-4" style="width:100%;">
+            <h3>类变量</h3>
             <p th:each="field : ${fieldList}" th:text=" 'private ' + ${field.type} + ' ' + ${field.original} + ';'" />
+
+            <h3>类变量实例化</h3>
+            <p th:each="field : ${fieldList}" th:text=" ${field.original} + ' = (' + ${field.type} + ')findViewById(R.id.' + ${field.original} + ');'" />
         </div>
     </div>
 </div>

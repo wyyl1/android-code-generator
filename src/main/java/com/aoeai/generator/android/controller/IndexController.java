@@ -24,7 +24,7 @@ public class IndexController {
     @Autowired
     private IParseService iParseService;
 
-    @RequestMapping("/")
+    @RequestMapping("")
     public String index() {
         return "index";
     }

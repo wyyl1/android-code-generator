@@ -28,7 +28,7 @@ public class ParseService implements IParseService{
         Document doc = saxReader.read(new ByteArrayInputStream(xml.getBytes("UTF-8")));
         Element root = doc.getRootElement(); // 根节点
 
-        System.out.println("根节点："+root.getName()+",内容：" + root.attributeValue("id"));
+//        System.out.println("根节点："+root.getName()+",内容：" + root.attributeValue("id"));
         Field field = getField(root);
         if(field != null){
             fieldList.add(field);
@@ -45,7 +45,7 @@ public class ParseService implements IParseService{
         //递归方法
         for (Object aList : list) {
             Element chileEle = (Element) aList;
-            System.out.println("节点：" + chileEle.getName() + ",内容：" + chileEle.attributeValue("id"));
+//            System.out.println("节点：" + chileEle.getName() + ",内容：" + chileEle.attributeValue("id"));
 
             Field field = getField(chileEle);
             if(field != null){
