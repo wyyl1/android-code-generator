@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 解析服务
@@ -38,6 +37,35 @@ public class ParseService implements IParseService{
         getElement(root, fieldList);
 
         return fieldList;
+    }
+
+    public List<Field> getMergeTypeResult(List<Field> list){
+        if(list.isEmpty()) return Collections.EMPTY_LIST;
+
+        Map<String, String> map = new LinkedHashMap<String, String>();
+        List<Field> mergeList = new ArrayList<Field>();
+
+        for(Field field : list){
+            String key = field.getType();
+            String value = map.get(key);
+
+            if(AoeaiTools.isBlank(value)){
+                value = field.getOriginal();
+            }else {
+                value = value + ", " + field.getOriginal();
+            }
+
+            map.put(key, value);
+        }
+
+        for(Map.Entry<String, String> entry : map.entrySet()){
+            Field field = new Field();
+            field.setType(entry.getKey());
+            field.setMergeValues(entry.getValue());
+            mergeList.add(field);
+        }
+
+        return mergeList;
     }
 
     private void getElement(Element element, List<Field> fieldList){

@@ -26,7 +26,9 @@ targetCompatibility = 1.8
 
 war {
     baseName = 'android-code-generator'
-    version =  '0.0.1' // 2016-03-29 发布0.0.1版本
+    version =  '0.0.2'
+    // 2016-03-29 发布0.0.1版本
+    // 2016-03-29 发布0.0.2版本
 }
 configurations {
     providedRuntime // 发布
@@ -42,7 +44,7 @@ dependencies {
 
     testCompile("junit:junit")
 
-    // 发布
+    // 发布时打开,开发时注释掉
     compile("org.springframework.boot:spring-boot-starter-web")
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 }

@@ -18,6 +18,11 @@ public class Field {
      */
     private String original;
 
+    /**
+     * 类型合并后的变量
+     */
+    private String mergeValues;
+
     public String getType() {
         return type;
     }
@@ -33,6 +38,15 @@ public class Field {
 
     public Field setOriginal(String original) {
         this.original = original;
+        return this;
+    }
+
+    public String getMergeValues() {
+        return mergeValues;
+    }
+
+    public Field setMergeValues(String mergeValues) {
+        this.mergeValues = mergeValues;
         return this;
     }
 }

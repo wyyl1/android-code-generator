@@ -12,25 +12,38 @@
 <div class="container">
     <div class="jumbotron">
         <h1>Android代码生成器</h1>
+        <p>源码：<a href="https://github.com/wyyl1/android-code-generator" target="_blank">https://github.com/wyyl1/android-code-generator</a>
+        </p>
+        <p>设计文档：<a href="http://blog.csdn.net/wyyl1/article/details/50984221" target="_blank">http://blog.csdn.net/wyyl1/article/details/50984221</a>
+        </p>
         <p>QQ群：550618228</p>
     </div>
     <div class="row">
         <form th:action="@{/createAndroidCode}" method="post">
 
-            <textarea name="xmlCode" class="form-control" rows="5" onfocus="this.value=''; this.onfocus=null;">粘贴Android的xml文件内容在这里，可以生成有android:id属性的Java对象</textarea>
+            <textarea name="xmlCode" class="form-control" rows="5" th:text="${xmlCode}" onfocus="this.value=''; this.onfocus=null;">粘贴Android的xml文件内容在这里，可以生成有android:id属性的Java对象</textarea>
 
             <br/>
 
-            <button type="submit" th:text="提交" class="btn btn-info" />
+            <select name="typeMerge" class="form-control" style="width: auto">
+                <option value="1" th:selected="${typeMerge} == 1">同类型合并-否</option>
+                <option value="2" th:selected="${typeMerge} == 2">同类型合并-是</option>
+            </select>
 
+            <br/>
+
+            <button type="submit" th:text="提交" class="btn btn-info"/>
         </form>
 
         <div class="col-sm-4" style="width:100%;">
             <h3>类变量</h3>
-            <p th:each="field : ${fieldList}" th:text=" 'private ' + ${field.type} + ' ' + ${field.original} + ';'" />
+            <p th:if="${typeMerge} == 1" th:each="field : ${fieldList}" th:text=" 'private ' + ${field.type} + ' ' + ${field.original} + ';'"/>
+
+            <p th:if="${typeMerge} == 2" th:each="field : ${mergeFieldList}" th:text=" 'private ' + ${field.type} + ' ' + ${field.mergeValues} + ';'"/>
 
             <h3>类变量实例化</h3>
-            <p th:each="field : ${fieldList}" th:text=" ${field.original} + ' = (' + ${field.type} + ')findViewById(R.id.' + ${field.original} + ');'" />
+            <p th:each="field : ${fieldList}"
+               th:text=" ${field.original} + ' = (' + ${field.type} + ')findViewById(R.id.' + ${field.original} + ');'"/>
         </div>
     </div>
 </div>
