@@ -6,6 +6,13 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+
+    <style type="text/css">
+        /* java作用域 */
+        .java-scope{color:#000080;}
+        /* java变量 */
+        .java-variable{color:#660e7a;}
+    </style>
 </head>
 <body>
 
@@ -18,34 +25,60 @@
         </p>
         <p>QQ群：550618228</p>
     </div>
-    <div class="row">
-        <form th:action="@{/createAndroidCode}" method="post">
 
-            <textarea name="xmlCode" class="form-control" rows="5" th:text="${xmlCode}" onfocus="this.value=''; this.onfocus=null;">粘贴Android的xml文件内容在这里，可以生成有android:id属性的Java对象</textarea>
-
-            <br/>
-
-            <select name="typeMerge" class="form-control" style="width: auto">
-                <option value="1" th:selected="${typeMerge} == 1">同类型合并-否</option>
-                <option value="2" th:selected="${typeMerge} == 2">同类型合并-是</option>
-            </select>
-
-            <br/>
-
-            <button type="submit" th:text="提交" class="btn btn-info"/>
-        </form>
-
-        <div class="col-sm-4" style="width:100%;">
-            <h3>类变量</h3>
-            <p th:if="${typeMerge} == 1" th:each="field : ${fieldList}" th:text=" 'private ' + ${field.type} + ' ' + ${field.original} + ';'"/>
-
-            <p th:if="${typeMerge} == 2" th:each="field : ${mergeFieldList}" th:text=" 'private ' + ${field.type} + ' ' + ${field.mergeValues} + ';'"/>
-
-            <h3>类变量实例化</h3>
-            <p th:each="field : ${fieldList}"
-               th:text=" ${field.original} + ' = (' + ${field.type} + ')findViewById(R.id.' + ${field.original} + ');'"/>
+    <form th:action="@{/createAndroidCode}" method="post">
+        <div class="row">
+            <textarea name="xmlCode" class="form-control" rows="5" th:text="${xmlCode}"
+                      onfocus="this.value=''; this.onfocus=null;">粘贴Android的xml文件内容在这里，可以生成有android:id属性的Java对象</textarea>
         </div>
+
+        <div class="container" style="padding-top: 5px">
+            <div class="col-xs-2">
+                <select name="typeMerge" class="form-control" style="width: auto">
+                    <option value="2" th:selected="${typeMerge} == 2">同类型合并-是</option>
+                    <option value="1" th:selected="${typeMerge} == 1">同类型合并-否</option>
+                </select>
+            </div>
+
+            <div class="col-xs-2" style="display:none">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="active"/>RecyclerView.ViewHolder
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="padding-top: 5px">
+            <button type="submit" th:text="提交" class="btn btn-info"/>
+        </div>
+
+    </form>
+
+    <div style="width:100%;">
+        <h3>类变量</h3>
+        <ul class="list-unstyled">
+            <li th:if="${typeMerge} == 1" th:each="field : ${fieldList}">
+                <strong class="java-scope" th:text="private"/>
+                <span th:text="${field.type}"/>
+                <strong class="java-variable" th:text="${field.original}"/>;
+            </li>
+
+            <li th:if="${typeMerge} == 2" th:each="field : ${mergeFieldList}">
+                <strong class="java-scope" th:text="private"/>
+                <span th:text="${field.type}"/>
+                <strong class="java-variable" th:text="${field.mergeValues}"/>;
+            </li>
+        </ul>
+
+        <h3>类变量实例化</h3>
+        <ul class="list-unstyled">
+            <li th:each="field : ${fieldList}">
+                <span th:text="${field.original}"/> = (<span th:text="${field.type}"/>)findViewById(R.id.<strong class="java-variable" th:text="${field.original}"/>);
+            </li>
+        </ul>
     </div>
+
 </div>
 
 

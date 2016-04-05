@@ -45,8 +45,8 @@ dependencies {
     testCompile("junit:junit")
 
     // 发布时打开,开发时注释掉
-    compile("org.springframework.boot:spring-boot-starter-web")
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+//    compile("org.springframework.boot:spring-boot-starter-web")
+//    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 }
 
 task wrapper(type: Wrapper) {
