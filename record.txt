@@ -1,2 +1,4 @@
 Date:2016-04-05
 生成代码添加高亮显示
+Date:2016-04-06
+自动生成RecyclerView.ViewHolder
