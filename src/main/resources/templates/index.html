@@ -77,6 +77,38 @@
                 <span th:text="${field.original}"/> = (<span th:text="${field.type}"/>)findViewById(R.id.<strong class="java-variable" th:text="${field.original}"/>);
             </li>
         </ul>
+
+        <h3>RecyclerView.ViewHolder</h3>
+        <ul class="list-unstyled" th:if="${fieldList}">
+            <strong class="java-scope" th:text="class"/> ViewHolder <strong class="java-scope" th:text="extends"/> RecyclerView.ViewHolder {<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;View <strong class="java-variable" th:text="mView"/>;<br/><br/>
+
+            <li th:if="${typeMerge} == 1" th:each="field : ${fieldList}">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span th:text="${field.type}"/>
+                <strong class="java-variable" th:text="${field.original}"/>;
+            </li>
+
+            <li th:if="${typeMerge} == 2" th:each="field : ${mergeFieldList}">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span th:text="${field.type}"/>
+                <strong class="java-variable" th:text="${field.mergeValues}"/>;
+            </li>
+
+            <br/>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;ViewHolder(View view) {
+            <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong class="java-scope" th:text="super"/>(view);
+            <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong class="java-variable" th:text="mView"/> = view;
+            <li th:each="field : ${fieldList}">
+                <strong class="java-variable" th:text="${'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + field.original}"/> = (<span th:text="${field.type}"/>)view.findViewById(R.id.<strong class="java-variable" th:text="${field.original}"/>);
+            </li>
+            &nbsp;&nbsp;&nbsp;&nbsp;}
+            <br/>
+            }
+        </ul>
     </div>
 
 </div>

@@ -26,9 +26,10 @@ targetCompatibility = 1.8
 
 war {
     baseName = 'android-code-generator'
-    version =  '0.0.2'
+    version =  '0.0.3'
     // 2016-03-29 发布0.0.1版本
     // 2016-03-29 发布0.0.2版本
+    // 2016-04-06 发布0.0.3版本
 }
 configurations {
     providedRuntime // 发布
