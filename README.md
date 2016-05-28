@@ -5,6 +5,10 @@ http://www.aoeai.com:8081/android-code-generator/
 项目说明
 ----
 http://blog.csdn.net/wyyl1/article/details/50984221
+
+使用说明
+----
+http://blog.csdn.net/wyyl1/article/details/51366651
     
 ## QQ群
 
