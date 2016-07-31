@@ -6,22 +6,33 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/logo.ico}" media="screen"/>
 
     <style type="text/css">
         /* java作用域 */
-        .java-scope{color:#000080;}
+        .java-scope {
+            color: #000080;
+        }
+
         /* java变量 */
-        .java-variable{color:#660e7a;}
+        .java-variable {
+            color: #660e7a;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="jumbotron">
-        <h1>Android代码生成器</h1>
-        <p>源码：<a href="https://github.com/wyyl1/android-code-generator" target="_blank">https://github.com/wyyl1/android-code-generator</a>
+        <h2>Android代码生成器</h2>
+        <p>
+            源码：<a href="https://github.com/wyyl1/android-code-generator" target="_blank">https://github.com/wyyl1/android-code-generator</a>
         </p>
-        <p>设计文档：<a href="http://blog.csdn.net/wyyl1/article/details/50984221" target="_blank">http://blog.csdn.net/wyyl1/article/details/50984221</a>
+        <p>
+            使用说明：<a href="http://blog.csdn.net/wyyl1/article/details/51366651" target="_blank">http://blog.csdn.net/wyyl1/article/details/50984221</a>
+        </p>
+        <p>
+            设计文档：<a href="http://blog.csdn.net/wyyl1/article/details/50984221" target="_blank">http://blog.csdn.net/wyyl1/article/details/50984221</a>
         </p>
         <p>QQ群：550618228</p>
     </div>
@@ -74,13 +85,15 @@
         <h3>类变量实例化</h3>
         <ul class="list-unstyled">
             <li th:each="field : ${fieldList}">
-                <span th:text="${field.original}"/> = (<span th:text="${field.type}"/>)findViewById(R.id.<strong class="java-variable" th:text="${field.original}"/>);
+                <span th:text="${field.original}"/> = (<span th:text="${field.type}"/>)findViewById(R.id.<strong
+                    class="java-variable" th:text="${field.original}"/>);
             </li>
         </ul>
 
         <h3>RecyclerView.ViewHolder</h3>
         <ul class="list-unstyled" th:if="${fieldList}">
-            <strong class="java-scope" th:text="class"/> ViewHolder <strong class="java-scope" th:text="extends"/> RecyclerView.ViewHolder {<br/>
+            <strong class="java-scope" th:text="class"/> ViewHolder <strong class="java-scope" th:text="extends"/>
+            RecyclerView.ViewHolder {<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;View <strong class="java-variable" th:text="mView"/>;<br/><br/>
 
             <li th:if="${typeMerge} == 1" th:each="field : ${fieldList}">
@@ -103,7 +116,10 @@
             <br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong class="java-variable" th:text="mView"/> = view;
             <li th:each="field : ${fieldList}">
-                <strong class="java-variable" th:text="${'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + field.original}"/> = (<span th:text="${field.type}"/>)view.findViewById(R.id.<strong class="java-variable" th:text="${field.original}"/>);
+                <strong class="java-variable"
+                        th:text="${'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + field.original}"/> = (<span
+                    th:text="${field.type}"/>)view.findViewById(R.id.<strong class="java-variable"
+                                                                             th:text="${field.original}"/>);
             </li>
             &nbsp;&nbsp;&nbsp;&nbsp;}
             <br/>
@@ -113,6 +129,11 @@
 
 </div>
 
+<footer class="footer navbar-fixed-bottom ">
+    <div class="container">
+        <h5 style="text-align:center;">浙ICP备16025224号  公安机关备案号 33010802006008</h5>
+    </div>
+</footer>
 
 </body>
 </html>
