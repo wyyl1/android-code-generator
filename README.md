@@ -1,6 +1,6 @@
 项目地址
 ----
-http://www.aoeai.com:8081/android-code-generator/
+http://www.aoeai.com/android-code-generator/
 
 项目说明
 ----
